@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Applications</string>
     <string name="loading_apps">Loading applications</string>
     <string name="is_system_app">System app</string>
     <string name="uninstall">Uninstall</string>
