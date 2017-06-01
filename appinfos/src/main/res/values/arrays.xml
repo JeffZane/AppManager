@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="group_titles">
+        <item>@string/activities</item>
+        <item>@string/service</item>
+        <item>@string/receivers</item>
+        <item>@string/providers</item>
+        <item>@string/permissions</item>
+        <item>@string/declared_premission</item>
+        <item>@string/uses_feature</item>
+        <item>@string/configurations</item>
+        <item>@string/signatures</item>
+    </array>
+</resources>
