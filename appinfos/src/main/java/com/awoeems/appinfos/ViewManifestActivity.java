@@ -54,7 +54,7 @@ public class ViewManifestActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
         mWebView = new WebView(this);
         setContentView(mWebView);
 

@@ -1,4 +1,4 @@
-package com.awoeems.appmanager.applications;
+package com.awoeems.amg.applications;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

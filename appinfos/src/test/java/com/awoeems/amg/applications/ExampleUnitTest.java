@@ -1,4 +1,4 @@
-package com.awoeems.appmanager.applications;
+package com.awoeems.amg.applications;
 
 import org.junit.Test;
 

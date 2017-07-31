@@ -1,6 +1,5 @@
 package com.awoeems.appinfos;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ListFragment;
 import android.app.LoaderManager;
@@ -19,9 +18,6 @@ import android.text.Spannable;
 import android.text.format.Formatter;
 import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -32,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
-
 
 import com.awoeems.appinfos.utils.Utils;
 
@@ -47,7 +42,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class MainListFragment extends ListFragment implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener,
+public class MainListFragment extends ListFragment implements AdapterView.OnItemClickListener,
+        SearchView.OnQueryTextListener,
         LoaderManager.LoaderCallbacks<List<ApplicationItem>> {
 
     private static Collator sCollator = Collator.getInstance();
@@ -69,8 +65,12 @@ public class MainListFragment extends ListFragment implements AdapterView.OnItem
     private ProgressDialog mProgressDialog;
     private MainCallbacks mCallbacks;
     private Activity mActivity;
-
+    private int mAppsType = MainLoader.TYPE_USER_APPS;
     private int mSortBy = SORT_NAME;
+
+    public static MainListFragment newInstance() {
+        return new MainListFragment();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,8 +92,9 @@ public class MainListFragment extends ListFragment implements AdapterView.OnItem
 
         if (savedInstanceState != null) {
             int sortBy = savedInstanceState.getInt(INSTANCE_STATE_SORT_BY, -1);
-            if (sortBy != -1)
+            if (sortBy != -1) {
                 setSortBy(sortBy);
+            }
         }
     }
 
@@ -118,7 +119,7 @@ public class MainListFragment extends ListFragment implements AdapterView.OnItem
     @Override
     public Loader<List<ApplicationItem>> onCreateLoader(int i, Bundle bundle) {
         mProgressDialog.show();
-        return new MainLoader(mActivity);
+        return new MainLoader(mActivity, mAppsType);
     }
 
     @Override
@@ -220,6 +221,13 @@ public class MainListFragment extends ListFragment implements AdapterView.OnItem
 
     private void checkFastScroll() {
         getListView().setFastScrollEnabled(mSortBy == SORT_NAME);
+    }
+
+    public void switchAppList(@MainLoader.AppType int appsType) {
+        if (mAppsType != appsType) {
+            mAppsType = appsType;
+            getLoaderManager().restartLoader(0, null, this);
+        }
     }
 
     public void sortApplicationList() {

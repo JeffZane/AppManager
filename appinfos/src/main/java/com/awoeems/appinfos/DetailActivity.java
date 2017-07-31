@@ -12,7 +12,7 @@ public class DetailActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
         FrameLayout frameLayout = new FrameLayout(this);
         frameLayout.setId(LAYOUT_ID);
         setContentView(frameLayout);

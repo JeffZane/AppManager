@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.support.annotation.IntDef;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +20,22 @@ public class MainLoader extends AsyncTaskLoader<List<ApplicationItem>> {
     private PackageIntentReceiver mPackageObserver;
     private PackageManager mPackageManager;
 
-    public MainLoader(Context context) {
-        super(context);
+    public static final int TYPE_SYSTEM_APPS = 1;
+    public static final int TYPE_USER_APPS = 2;
+    public static final int TYPE_ALL_APPS = 3;
 
+    @AppType
+    private int mAppType;
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({TYPE_SYSTEM_APPS, TYPE_USER_APPS, TYPE_ALL_APPS})
+    public @interface AppType {
+
+    }
+
+    public MainLoader(Context context, @AppType int type) {
+        super(context);
+        mAppType = type;
         mPackageManager = getContext().getPackageManager();
     }
 
@@ -30,16 +46,20 @@ public class MainLoader extends AsyncTaskLoader<List<ApplicationItem>> {
         List<ApplicationItem> itemList = new ArrayList<>(applicationInfos.size());
 
         for (ApplicationInfo applicationInfo : applicationInfos) {
-
-            ApplicationItem item = new ApplicationItem();
-            item.applicationInfo = applicationInfo;
-            item.label = applicationInfo.loadLabel(mPackageManager).toString();
-            try {
-                item.date = mPackageManager.getPackageInfo(applicationInfo.packageName, 0).firstInstallTime;
-            } catch (PackageManager.NameNotFoundException e) {
-                item.date = 0L;
+            boolean isSystemApp = (applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
+            if ((mAppType == TYPE_ALL_APPS) ||
+                    (mAppType == TYPE_SYSTEM_APPS && isSystemApp) ||
+                    (mAppType == TYPE_USER_APPS && !isSystemApp)) {
+                ApplicationItem item = new ApplicationItem();
+                item.applicationInfo = applicationInfo;
+                item.label = applicationInfo.loadLabel(mPackageManager).toString();
+                try {
+                    item.date = mPackageManager.getPackageInfo(applicationInfo.packageName, 0).firstInstallTime;
+                } catch (PackageManager.NameNotFoundException e) {
+                    item.date = 0L;
+                }
+                itemList.add(item);
             }
-            itemList.add(item);
         }
 
         return itemList;
