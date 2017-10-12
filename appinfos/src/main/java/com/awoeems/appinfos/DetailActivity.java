@@ -19,7 +19,7 @@ public class DetailActivity extends BaseActivity {
         setContentView(frameLayout);
         String packageName = getIntent().getStringExtra(DetailFragment.EXTRA_PACKAGE_NAME);
 
-        getFragmentManager()
+        getSupportFragmentManager()
                 .beginTransaction()
                 .replace(LAYOUT_ID, DetailFragment.getInstance(packageName))
                 .commit();
