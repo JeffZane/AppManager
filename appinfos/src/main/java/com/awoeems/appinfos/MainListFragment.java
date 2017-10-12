@@ -42,6 +42,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+// TODO: instead of ListFragment
 public class MainListFragment extends ListFragment implements AdapterView.OnItemClickListener,
         SearchView.OnQueryTextListener,
         LoaderManager.LoaderCallbacks<List<ApplicationItem>> {

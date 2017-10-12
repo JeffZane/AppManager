@@ -1,6 +1,5 @@
 package com.awoeems.appinfos;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -11,6 +10,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
+
+import com.awoeems.baselib.BaseActivity;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -42,7 +43,7 @@ import javax.xml.xpath.XPathFactory;
  * File do not need to be kept. We delete it to keep used memory as low as possible, but anyway, each time
  * we will show application's manifest, the same file will be used, so used memory will not grow.
  */
-public class ViewManifestActivity extends Activity {
+public class ViewManifestActivity extends BaseActivity {
 
     public static final String EXTRA_PACKAGE_NAME = "package_name";
 

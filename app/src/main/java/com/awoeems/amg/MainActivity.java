@@ -9,7 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,19 +18,17 @@ import com.awoeems.appinfos.DetailActivity;
 import com.awoeems.appinfos.DetailFragment;
 import com.awoeems.appinfos.MainCallbacks;
 import com.awoeems.appinfos.MainListFragment;
-import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
+import com.awoeems.baselib.BaseActivity;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainCallbacks {
-//    private Toolbar mToolbar;
+    //    private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private MainListFragment mMainListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
 //        mToolbar = (Toolbar) findViewById(R.id.toolbar);

@@ -1,7 +1,6 @@
 package com.awoeems.appinfos;
 
 import android.annotation.TargetApi;
-import android.app.Fragment;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
@@ -35,6 +34,7 @@ import android.widget.Toast;
 
 import com.awoeems.appinfos.utils.Tuple;
 import com.awoeems.appinfos.utils.Utils;
+import com.awoeems.baselib.BaseFragment;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -42,7 +42,7 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DetailFragment extends Fragment {
+public class DetailFragment extends BaseFragment {
 
     static final String FRAGMENT_TAG = "fragment_detail";
     public static final String EXTRA_PACKAGE_NAME = "pkg";

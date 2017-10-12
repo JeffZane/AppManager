@@ -1,11 +1,12 @@
 package com.awoeems.appinfos;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-public class DetailActivity extends Activity {
+import com.awoeems.baselib.BaseActivity;
+
+public class DetailActivity extends BaseActivity {
 
     private final int LAYOUT_ID = 0x8898;
 

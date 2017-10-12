@@ -1,0 +1,27 @@
+ext {
+    supportLibVersion = "26.0.2"
+
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.1",
+            minSdkVersion    : 16,
+            targetSdkVersion : 26
+    ]
+
+    dependencies = [
+            "appcompat-v7"     : "com.android.support:appcompat-v7:$supportLibVersion",
+            "support-design"   : "com.android.support:design:$supportLibVersion",
+
+            "constraint-layout": "com.android.support.constraint:constraint-layout:1.0.2",
+    ]
+}
+
+allprojects {
+    repositories {
+        jcenter()
+
+        maven {
+            url 'https://maven.google.com'
+        }
+    }
+}
